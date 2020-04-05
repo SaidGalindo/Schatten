@@ -22,6 +22,7 @@ class Bootloader extends Phaser.Scene{
         //se cargan los botones y efectos del menu
         this.load.image('jugarC','fondo/jugarC.png');
         this.load.image('garraC','fondo/garra.png');
+        this.load.image('shadowTitleC','fondo/shadowTitleC.png');
 
         
         //se carga a santino
@@ -43,6 +44,7 @@ class Bootloader extends Phaser.Scene{
         //se coloca parte del menu
         this.jugarC = this.add.image(140,200,'jugarC').setInteractive();
         this.jugarC.setOrigin(0,0);
+        this.jugarC.setName("jugarC");
 
         this.garraC = this.add.image(160,200,'garraC').setScale(.3);
         this.garraC.setOrigin(0,0);
@@ -50,8 +52,15 @@ class Bootloader extends Phaser.Scene{
 
 
         //Se coloca a santino en el fondo con su animacion 
-        this.santinoFondoC = this.add.sprite(643, 540, 'santinoidlec', 0).setScale(1);
+        this.santinoFondoC = this.add.sprite(643, 540, 'santinoidlec', 0).setScale(1).setInteractive();
         this.santinoFondoC.anims.play("santinoidlec");
+        this.santinoFondoC.setName("santinoFondoC");
+
+        //se colocan efectos en el menu al tocar a santino
+        this.shadowTitleC = this.add.image(1247,380,'shadowTitleC').setScale(.1);
+        this.shadowTitleC.flipX = true;
+        this.shadowTitleC.setAlpha(.3);
+        this.shadowTitleC.setVisible(false);
 
         //para la seleccion con el click
         const eventos = Phaser.Input.Events;
@@ -63,10 +72,17 @@ class Bootloader extends Phaser.Scene{
         });
 
         this.input.on(eventos.GAMEOBJECT_OVER, (pointer, gameObject) =>{//efecto al pasar puntero
-            this.garraC.setVisible(true);
+            if(gameObject.name == "jugarC"){
+                this.garraC.setVisible(true);
+            }else if(gameObject.name == "santinoFondoC"){
+                this.shadowTitleC.setVisible(true);
+
+            }
         });
         this.input.on(eventos.GAMEOBJECT_OUT, (pointer, gameObject) =>{//efecto al quitar puntero
-            this.garraC.setVisible(false);
+            if(gameObject.name == "jugarC"){
+                this.garraC.setVisible(false);
+            }
         });
 
 
