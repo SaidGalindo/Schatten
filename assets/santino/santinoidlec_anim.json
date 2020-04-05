@@ -1,0 +1,32 @@
+{
+    "anims": [
+        {
+            "key": "santinoidlec",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 1,
+            "frames": [
+                {
+                    "key": "santinoidlec",
+                    "frame": "perro1"
+                },
+                {
+                    "key": "santinoidlec",
+                    "frame": "perro2"
+                },
+                {
+                    "key": "santinoidlec",
+                    "frame": "perro3"
+                },
+                {
+                    "key": "santinoidlec",
+                    "frame": "perro4"
+                },
+                {
+                    "key": "santinoidlec",
+                    "frame": "perro5"
+                }
+            ]
+        }
+    ]
+}
