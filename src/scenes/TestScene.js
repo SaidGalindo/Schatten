@@ -18,8 +18,12 @@ class TestScene extends Phaser.Scene{
         const keyCodes = Phaser.Input.Keyboard.KeyCodes;
         //PlayerOne keys
         //this.txt = this.add.text(50,50, "Cargando we...", {font: "25px Arial", fill: "yellow"});
-        this.background = this.add.image(0,0, "forest").setScale(2).setDepth(0);
-        this.player = this.add.image(200,580, "santino");
+        //this.background = this.add.image(0,0, "forest").setDepth(0);
+        //this.background.setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0, this.game.config.width , this.game.config.height, "forest");
+        this.background.setOrigin(0,0).setScrollFactor(0);
+        this.player = this.add.image(200,650, "santino");
+        this.cameras.main.startFollow(this.player);
         this.inputPLayer1 = this.input.keyboard.addKeys({
             u: keyCodes.UP,
             d: keyCodes.DOWN,

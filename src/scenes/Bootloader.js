@@ -60,7 +60,7 @@ class Bootloader extends Phaser.Scene{
         this.input.on(eventos.GAMEOBJECT_DOWN, (pointer, gameObject) => { 
             this.truenoC=this.sound.add  ("truenoC");
             this.truenoC.play();
-            this.scene.start("testScene");
+            this.scene.start("TestScene");
             console.log("Aber aber");
             
     
