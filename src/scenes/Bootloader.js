@@ -43,6 +43,7 @@ class Bootloader extends Phaser.Scene{
         //se coloca parte del menu
         this.jugarC = this.add.image(140,200,'jugarC').setInteractive();
         this.jugarC.setOrigin(0,0);
+        this.jugarC.inputEnabled = true;    //Activar para eventos
 
         this.garraC = this.add.image(160,200,'garraC').setScale(.3);
         this.garraC.setOrigin(0,0);
@@ -59,6 +60,9 @@ class Bootloader extends Phaser.Scene{
         this.input.on(eventos.GAMEOBJECT_DOWN, (pointer, gameObject) => { 
             this.truenoC=this.sound.add  ("truenoC");
             this.truenoC.play();
+            this.scene.start("testScene");
+            console.log("Aber aber");
+            
     
         });
 
