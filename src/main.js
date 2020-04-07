@@ -1,5 +1,5 @@
 import Bootloader from "./scenes/Bootloader.js"
-//import TestScene from "./scenes/TestScene.js"
+import TestScene from "./scenes/TestScene.js"
 
 var config = {
     title: "Curso Phaser",		    //Nombre del juego (opcional)
@@ -13,7 +13,7 @@ var config = {
                                     // se refiere a dónde se pondrá el canvas o lienzo
     pixelArt: true,		            //Diseño con pixeles definidos (no borrosos)
     backgroundColor: "#34495e", 	//Color de fondo del canvas ()
-    scene: [TestScene, Bootloader],    //Aquí irá la lista de scenas del juego
+    scene: [TestScene, Bootloader ],    //Aquí irá la lista de scenas del juego
     banner:{
         hidePhaser: true,
         text: "#fff00f",
