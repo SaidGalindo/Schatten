@@ -25,20 +25,15 @@ class TestScene extends Phaser.Scene{
         this.load.image("mogno", "objetos/mo.png");
         this.load.image("hueso", "objetos/hueso.png");
         this.load.image("roca", "objetos/roca.png");
+        //piso
+        this.load.image("ground", "objetos/ground.png")
     }
 
     create(){
 
         const keyCodes = Phaser.Input.Keyboard.KeyCodes;
-        //PlayerOne keys
-        //this.txt = this.add.text(50,50, "Cargando we...", {font: "25px Arial", fill: "yellow"});
-        //this.background = this.add.image(0,0, "forest").setDepth(0);
-        //this.background.setOrigin(0,0);
-        this.background = this.add.tileSprite(0,0, this.game.config.width , this.game.config.height, "forest");
-        this.background.setOrigin(0,0).setScrollFactor(1);
-        this.player = this.add.image(0,0, "santino");
-        this.cameras.main.startFollow(this.player);
-        //this.background.tilePositionY -= 500;
+        
+        
         this.inputPLayer1 = this.input.keyboard.addKeys({
             u: keyCodes.UP,
             d: keyCodes.DOWN,
@@ -51,6 +46,8 @@ class TestScene extends Phaser.Scene{
         this.cantMons = 0;
 
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        
 
         //sonido camino en pasto
         this.pandora=this.sound.add("pandora");
@@ -117,11 +114,11 @@ class TestScene extends Phaser.Scene{
         this.tierra.setDepth(3);
         //--
 
-        this.roca = this.add.image(2000, 630, "roca");
-        this.roca.setOrigin(0,0);
+        this.roca = this.physics.add.image(2000, 630, "roca");
+        this.roca.setOrigin(0,0).setDepth(2);
         this.roca.setScale(0.09);
 
-        this.monio = this.add.image(1290, 630, "mogno");
+        this.monio = this.physics.add.image(1290, 630, "mogno");
         this.monio.setOrigin(0,0);
         this.monio.setScale(0.008);
         this.monio.setDepth(4);
@@ -218,40 +215,50 @@ class TestScene extends Phaser.Scene{
         });
         this.textoMonios.setScrollFactor(0);
 
-        this.player = this.add.image(200,635, "santino");
-        this.player.setDepth(2);
+        
+        this.player = this.physics.add.image(200,600, "santino");
+        this.player.setDepth(2).setGravityY(400);
+        //Collider
+        
+        //this.roca.body.collideWorldBounds = true;
+        this.roca.setImmovable(true);
+        this.physics.add.collider(this.player, this.roca);
+        this.physics.world.collide(this.player, this.roca, ()=>{});
+        
+       
+
         this.cameras.main.setBounds(0, 0, this.sys.canvas.width * 5, this.sys.canvas.height);
         this.cameras.main.startFollow(this.player);
 
         //TWEEEN salto
-        this.salto = this.add.tween({
-            targets: [this.player],
-            y: 570,
-            yoyo: true,
-            duration: 400,
-        });
+        // this.salto = this.add.tween({
+        //     targets: [this.player],
+        //     y: 570,
+        //     yoyo: true,
+        //     duration: 400,
+        // });
 
-        
+        this.createGround();
     }
 
     movement(){
         if (this.cursors.left.isDown && (this.player.x > 100)) {
             this.player.x -= 3;
             this.player.flipX = 1;
-            // console.log(this.player.x);
+             console.log(this.player.x);
 
         } else if (this.cursors.right.isDown && (this.player.x < this.sys.canvas.width * 5)) {
             this.player.x += 3;
             this.player.flipX = 0;
             // console.log(this.player.x);
-        }
-        else{
-            if (this.cursors.up.isDown) {
-                this.salto.play();
-            }
-            // console.log("Estoy quieto");
-        }
+        }   
+    }
 
+    Jump(){
+        if (this.cursors.up.isDown) {
+            //this.salto.play();
+            this.player.setVelocityY(-200);
+        }
     }
 
     verificaPos(){
@@ -269,6 +276,73 @@ class TestScene extends Phaser.Scene{
         }
     }
 
+    createGround(){
+        this.gr00 = this.physics.add.image(200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr01 = this.physics.add.image(400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr02 = this.physics.add.image(600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr03 = this.physics.add.image(800,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr04 = this.physics.add.image(1000,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr05 = this.physics.add.image(1200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr06 = this.physics.add.image(1400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr07 = this.physics.add.image(1600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr08 = this.physics.add.image(1800,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr09 = this.physics.add.image(2000,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr10 = this.physics.add.image(2200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr11 = this.physics.add.image(2400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr12 = this.physics.add.image(2600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr13 = this.physics.add.image(2800,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr14 = this.physics.add.image(3000,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr15 = this.physics.add.image(3200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr16 = this.physics.add.image(3400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr17 = this.physics.add.image(3600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr18 = this.physics.add.image(3800 ,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr19 = this.physics.add.image(4000,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr20 = this.physics.add.image(4200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr21 = this.physics.add.image(4400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr22 = this.physics.add.image(4600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr23 = this.physics.add.image(4800,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr24 = this.physics.add.image(5000,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr25 = this.physics.add.image(5200,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr26 = this.physics.add.image(5400,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr27 = this.physics.add.image(5600,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        this.gr28 = this.physics.add.image(5800,710, "ground").setDepth(4).setScale(0.33).setDepth(2).setImmovable();
+        
+        this.suelo = this.add.group();
+        this.suelo.add(this.gr00);
+        this.suelo.add(this.gr01);
+        this.suelo.add(this.gr02);
+        this.suelo.add(this.gr03);
+        this.suelo.add(this.gr04);
+        this.suelo.add(this.gr05);
+        this.suelo.add(this.gr06);
+        this.suelo.add(this.gr07);
+        this.suelo.add(this.gr08);
+        this.suelo.add(this.gr09);
+        this.suelo.add(this.gr10);
+        this.suelo.add(this.gr11);
+        this.suelo.add(this.gr12);
+        this.suelo.add(this.gr13);
+        this.suelo.add(this.gr14);
+        this.suelo.add(this.gr15);
+        this.suelo.add(this.gr16);
+        this.suelo.add(this.gr17);
+        this.suelo.add(this.gr18);
+        this.suelo.add(this.gr19);
+        this.suelo.add(this.gr20);
+        this.suelo.add(this.gr21);
+        this.suelo.add(this.gr22);
+        this.suelo.add(this.gr23);
+        this.suelo.add(this.gr24);
+        this.suelo.add(this.gr25);
+        this.suelo.add(this.gr26);
+        this.suelo.add(this.gr27);
+        this.suelo.add(this.gr28);
+               
+        this.physics.add.collider(this.player, this.suelo);
+
+        //this.gr01.body.collideWorldBounds
+    }
+
     update(){
         this.movement();
         this.troncos5.tilePositionX = this.cameras.main.scrollX * 0.2;
@@ -283,6 +357,7 @@ class TestScene extends Phaser.Scene{
         this.tierra.tilePositionX = this.cameras.main.scrollX *0.65;
 
         this.verificaPos();
+        this.Jump();
 
         if(this.cantMons == 1){
             this.troncos5.setTint("0x0e5178");
