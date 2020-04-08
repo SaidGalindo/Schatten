@@ -21,9 +21,10 @@ class TestScene extends Phaser.Scene{
         //this.background = this.add.image(0,0, "forest").setDepth(0);
         //this.background.setOrigin(0,0);
         this.background = this.add.tileSprite(0,0, this.game.config.width , this.game.config.height, "forest");
-        this.background.setOrigin(0,0).setScrollFactor(0);
-        this.player = this.add.image(200,650, "santino");
+        this.background.setOrigin(0,0).setScrollFactor(1);
+        this.player = this.add.image(0,0, "santino");
         this.cameras.main.startFollow(this.player);
+        //this.background.tilePositionY -= 500;
         this.inputPLayer1 = this.input.keyboard.addKeys({
             u: keyCodes.UP,
             d: keyCodes.DOWN,
