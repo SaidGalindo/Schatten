@@ -15,7 +15,7 @@ class Bootloader extends Phaser.Scene{
         this.load.image('fondoSchattenC','fondo/bosque.png');
 
         //se carga el audio de fondo
-        this.load.audio("truenoC","audio/truenoC.mp3");
+        // this.load.audio("truenoC","audio/truenoC.mp3");
         this.load.audio("ashesC","audio/ashesC.mp3");
 
 
@@ -38,13 +38,17 @@ class Bootloader extends Phaser.Scene{
         this.fondoC.setDepth(-1);
 
         //se crea y reproduce el audio de fondo
-        this.ashesC=this.sound.add  ("ashesC");
+        this.ashesC=this.sound.add ("ashesC", {volume: 0.8});
         this.ashesC.play();
 
         //se coloca parte del menu
         this.jugarC = this.add.image(140,200,'jugarC').setInteractive();
         this.jugarC.setOrigin(0,0);
-        this.jugarC.setName("jugarC");
+//<<<<<<< HEAD
+//        this.jugarC.setName("jugarC");/
+//=======
+//        this.jugarC.inputEnabled = true;    //Activar para eventos
+//>>>>>>> said
 
         this.garraC = this.add.image(160,200,'garraC').setScale(.3);
         this.garraC.setOrigin(0,0);
@@ -66,8 +70,10 @@ class Bootloader extends Phaser.Scene{
         const eventos = Phaser.Input.Events;
 
         this.input.on(eventos.GAMEOBJECT_DOWN, (pointer, gameObject) => { 
-            this.truenoC=this.sound.add  ("truenoC");
-            this.truenoC.play();
+            // this.truenoC=this.sound.add  ("truenoC");
+            // this.truenoC.play();
+            this.ashesC.stop();
+            this.scene.start("TestScene");           
     
         });
 

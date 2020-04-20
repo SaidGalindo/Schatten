@@ -1,6 +1,7 @@
 import Bootloader from "./scenes/Bootloader.js"
+import TestScene from "./scenes/TestScene.js"
 
-const config = {
+var config = {
     title: "Curso Phaser",		    //Nombre del juego (opcional)
     url: "http://google.es",	    //Dirección de la página del juego (opcional)
     version: "0.0.1",		        //Versión alfanumérica (opcional)
@@ -12,7 +13,14 @@ const config = {
                                     // se refiere a dónde se pondrá el canvas o lienzo
     pixelArt: true,		            //Diseño con pixeles definidos (no borrosos)
     backgroundColor: "#34495e", 	//Color de fondo del canvas ()
-    scene: [Bootloader],    //Aquí irá la lista de scenas del juego
+    scene: [Bootloader, TestScene],    //Aquí irá la lista de scenas del juego
+    physics: {
+        default: 'arcade', //Matter
+        'arcade': {
+         
+        //debug: true
+        }
+    },
     banner:{
         hidePhaser: true,
         text: "#fff00f",
