@@ -18,7 +18,7 @@ var config = {
   physics: {
     default: "arcade", //Matter
     arcade: {
-      //debug: true
+      debug: true
     },
   },
   banner: {

@@ -1,0 +1,32 @@
+{
+    "anims": [
+        {
+            "key": "cfireidle",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "cfire",
+                    "frame": "cfire0"
+                },
+                {
+                    "key": "cfire",
+                    "frame": "cfire1"
+                },
+                {
+                    "key": "cfire",
+                    "frame": "cfire2"
+                },
+                {
+                    "key": "cfire",
+                    "frame": "cfire4"
+                },
+                {
+                    "key": "cfire",
+                    "frame": "cfire5"
+                }
+            ]
+        }
+    ]
+}

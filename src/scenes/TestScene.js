@@ -340,7 +340,6 @@ class TestScene extends Phaser.Scene{
                
         this.physics.add.collider(this.player, this.suelo);
 
-        //this.gr01.body.collideWorldBounds
     }
 
     update(){
