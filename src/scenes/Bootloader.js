@@ -1,3 +1,5 @@
+//esta es la escena del menu y la que administrara las demas 
+
 class Bootloader extends Phaser.Scene{
     constructor(){
         super({
@@ -17,11 +19,20 @@ class Bootloader extends Phaser.Scene{
         //se carga el audio de fondo
         // this.load.audio("truenoC","audio/truenoC.mp3");
         this.load.audio("ashesC","audio/ashesC.mp3");
+        this.load.audio("cCaballo","audio/cCaballo.mp3");
 
 
-        //se cargan los botones y efectos del menu
+        //se cargan los botones y efectos del menu (se cargan los de todas las escenas de menus)
         this.load.image('jugarC','fondo/jugarC.png');
+        this.load.image('cInfortunio','fondo/cInfortunio.png');
+        this.load.image('cDesesperacion','fondo/cDesesperacion.png');
+        this.load.image('cIncertidumbre','fondo/cIncertidumbre.png');
+        this.load.image('cDesarrollado','fondo/cDesarrollado.png');
+        this.load.image('jugarC','fondo/jugarC.png');
+        this.load.image('cNiveles','fondo/cNiveles.png');
+        this.load.image('cCreditos','fondo/cCreditos.png');
         this.load.image('garraC','fondo/garra.png');
+        this.load.image('cFondoMontaña','fondo/cFondoMontaña.jpg');
         this.load.image('shadowTitleC','fondo/shadowTitleC.png');
 
         
@@ -41,14 +52,23 @@ class Bootloader extends Phaser.Scene{
         this.ashesC=this.sound.add ("ashesC", {volume: 0.8});
         this.ashesC.play();
 
-        //se coloca parte del menu
+        //se coloca el texto(botones) del menu
         this.jugarC = this.add.image(140,200,'jugarC').setInteractive();
         this.jugarC.setOrigin(0,0);
-//<<<<<<< HEAD
-//        this.jugarC.setName("jugarC");/
-//=======
-//        this.jugarC.inputEnabled = true;    //Activar para eventos
-//>>>>>>> said
+        this.jugarC.setName("jugarC");
+        this.jugarC.inputEnabled = true;    //Activar para eventos
+
+        this.cNiveles = this.add.image(105,300,'cNiveles').setInteractive();
+        this.cNiveles.setOrigin(0,0);
+        this.cNiveles.setName("cNiveles");
+        this.cNiveles.inputEnabled = true; 
+
+        this.cCreditos = this.add.image(95,400,'cCreditos').setInteractive();
+        this.cCreditos.setOrigin(0,0);
+        this.cCreditos.setName("cCreditos");
+        this.cCreditos.inputEnabled = true; 
+
+
 
         this.garraC = this.add.image(160,200,'garraC').setScale(.3);
         this.garraC.setOrigin(0,0);
@@ -69,24 +89,41 @@ class Bootloader extends Phaser.Scene{
         //para la seleccion con el click
         const eventos = Phaser.Input.Events;
 
-        this.input.on(eventos.GAMEOBJECT_DOWN, (pointer, gameObject) => { 
-            // this.truenoC=this.sound.add  ("truenoC");
-            // this.truenoC.play();
-            this.ashesC.stop();
-            this.scene.start("TestScene");           
+        this.input.on(eventos.GAMEOBJECT_DOWN, (pointer, gameObject) => {   
+            if(gameObject.name == "jugarC"){
+                //this.truenoC=this.sound.add  ("truenoC");//esto genera un error (probablememtte el peso del audio )
+                //this.truenoC.play();
+                this.ashesC.stop();
+                this.scene.start("TestScene");
+            }else if(gameObject.name == "cNiveles"){
+                this.ashesC.stop();
+                this.scene.start("menuNiveles");
+            }else if(gameObject.name == "cCreditos"){ 
+                this.ashesC.stop();
+                this.scene.start("creditos");
+            }         
     
         });
 
         this.input.on(eventos.GAMEOBJECT_OVER, (pointer, gameObject) =>{//efecto al pasar puntero
+            //efectos de garras sobre las letras del menu
             if(gameObject.name == "jugarC"){
                 this.garraC.setVisible(true);
-            }else if(gameObject.name == "santinoFondoC"){
-                this.shadowTitleC.setVisible(true);
+                this.garraC.setPosition(160,200);
+            }else if(gameObject.name == "cNiveles"){
+                this.garraC.setVisible(true);
+                this.garraC.setPosition(160,285);
+            }else if(gameObject.name == "cCreditos"){ 
+                this.garraC.setVisible(true);
+                this.garraC.setPosition(160,380);
+            }else if(gameObject.name == "santinoFondoC"){//aparece una sombra al pasar el puntero sobre 
+                this.shadowTitleC.setVisible(true);      //santino
 
             }
         });
         this.input.on(eventos.GAMEOBJECT_OUT, (pointer, gameObject) =>{//efecto al quitar puntero
-            if(gameObject.name == "jugarC"){
+            //cuando se quita el cursor de las letras del menu desaparecela garra
+            if(gameObject.name == "jugarC" || gameObject.name == "cCreditos" || gameObject.name == "cNiveles"){
                 this.garraC.setVisible(false);
             }
         });

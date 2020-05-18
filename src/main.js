@@ -1,6 +1,8 @@
 import Bootloader from "./scenes/Bootloader.js";
 import TestScene from "./scenes/TestScene.js";
 import Escena2 from "./scenes/Escena2.js";
+import menuNiveles from "./scenes/menuNiveles.js";
+import creditos from "./scenes/creditos.js";
 
 var config = {
   title: "Curso Phaser", //Nombre del juego (opcional)
@@ -14,7 +16,7 @@ var config = {
   // se refiere a dónde se pondrá el canvas o lienzo
   pixelArt: true, //Diseño con pixeles definidos (no borrosos)
   backgroundColor: "#34495e", //Color de fondo del canvas ()
-  scene: [Escena2, Bootloader, TestScene], //Aquí irá la lista de scenas del juego
+  scene: [Bootloader,menuNiveles, Escena2, TestScene,creditos], //Aquí irá la lista de scenas del juego
   physics: {
     default: "arcade", //Matter
     arcade: {
