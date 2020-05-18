@@ -26,7 +26,9 @@ class TestScene extends Phaser.Scene{
         this.load.image("hueso", "objetos/hueso.png");
         this.load.image("roca", "objetos/roca.png");
         //piso
-        this.load.image("ground", "objetos/ground.png")
+        this.load.image("ground", "objetos/ground.png");
+        //anim - Said
+        this.load.atlas('santinoRun', 'santinoPack/santino_atlas.png', 'santinoPack/santino_anim.json');
     }
 
     create(){
@@ -47,7 +49,11 @@ class TestScene extends Phaser.Scene{
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        
+        //Animacion
+        this.anims.create({
+            key: 'santino_walk'
+
+        });
 
         //sonido camino en pasto
         this.pandora=this.sound.add("pandora");
@@ -241,6 +247,37 @@ class TestScene extends Phaser.Scene{
         this.createGround();
     }
 
+    update(){
+        this.movement();
+        this.troncos5.tilePositionX = this.cameras.main.scrollX * 0.2;
+        this.troncos4.tilePositionX = this.cameras.main.scrollX * 0.25;
+        this.troncos3.tilePositionX = this.cameras.main.scrollX * 0.4;
+        this.troncos2.tilePositionX = this.cameras.main.scrollX * 0.43;
+        this.troncosFrente.tilePositionX = this.cameras.main.scrollX *0.6;
+        this.hojas.tilePositionX = this.cameras.main.scrollX *0.6;
+        this.hojas2.tilePositionX = this.cameras.main.scrollX *0.6;
+        this.hojas3.tilePositionX = this.cameras.main.scrollX *0.6;
+        this.piso.tilePositionX = this.cameras.main.scrollX *0.65;
+        this.tierra.tilePositionX = this.cameras.main.scrollX *0.65;
+
+        this.verificaPos();
+        this.Jump();
+
+        if(this.cantMons == 1){
+            this.troncos5.setTint("0x0e5178");
+        }
+        else{
+            if(this.cantMons == 2){
+                this.troncos5.setTint("0x05283d");
+            }
+            else{
+                if(this.cantMons == 3){
+                    this.troncos5.setTint("0x000203");
+                }
+            }
+        }
+    }
+
     movement(){
         if (this.cursors.left.isDown && (this.player.x > 100)) {
             this.player.x -= 3;
@@ -342,36 +379,7 @@ class TestScene extends Phaser.Scene{
 
     }
 
-    update(){
-        this.movement();
-        this.troncos5.tilePositionX = this.cameras.main.scrollX * 0.2;
-        this.troncos4.tilePositionX = this.cameras.main.scrollX * 0.25;
-        this.troncos3.tilePositionX = this.cameras.main.scrollX * 0.4;
-        this.troncos2.tilePositionX = this.cameras.main.scrollX * 0.43;
-        this.troncosFrente.tilePositionX = this.cameras.main.scrollX *0.6;
-        this.hojas.tilePositionX = this.cameras.main.scrollX *0.6;
-        this.hojas2.tilePositionX = this.cameras.main.scrollX *0.6;
-        this.hojas3.tilePositionX = this.cameras.main.scrollX *0.6;
-        this.piso.tilePositionX = this.cameras.main.scrollX *0.65;
-        this.tierra.tilePositionX = this.cameras.main.scrollX *0.65;
-
-        this.verificaPos();
-        this.Jump();
-
-        if(this.cantMons == 1){
-            this.troncos5.setTint("0x0e5178");
-        }
-        else{
-            if(this.cantMons == 2){
-                this.troncos5.setTint("0x05283d");
-            }
-            else{
-                if(this.cantMons == 3){
-                    this.troncos5.setTint("0x000203");
-                }
-            }
-        }
-    }
+    
 
 }
 

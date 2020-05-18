@@ -1,0 +1,60 @@
+{
+    "anims": [
+        {
+            "key": "run",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 25,
+            "frames": [
+                {
+                    "key": "santino_atlas",
+                    "frame": "1"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "2"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "3"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "4"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "5"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "6"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "7"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "8"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "9"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "10"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "11"
+                },
+                {
+                    "key": "santino_atlas",
+                    "frame": "12"
+                }
+            ]
+        }
+    ]
+}
