@@ -32,6 +32,7 @@ class TestScene extends Phaser.Scene{
     }
 
     create(){
+        this.scene.launch('BatteryBar');
 
         const keyCodes = Phaser.Input.Keyboard.KeyCodes;
         

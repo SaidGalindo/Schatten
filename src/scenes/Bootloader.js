@@ -11,6 +11,7 @@ class Bootloader extends Phaser.Scene{
         console.log('Escena Bootloader');
     }
     preload() {
+        
         this.load.path = './assets/';  
 
         //se carga el fondo 
@@ -43,8 +44,8 @@ class Bootloader extends Phaser.Scene{
 
     }
     create() {
-        //Barra inicio
-        this.scene.launch('BatteryBar');
+        
+        //this.scene.launch('BatteryBar');
         //Se coloca el fondo
         this.fondoC = this.add.image(0,0,'fondoSchattenC');
         this.fondoC.setOrigin(0,0);

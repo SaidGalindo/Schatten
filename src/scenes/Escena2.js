@@ -38,6 +38,7 @@ class Escena2 extends Phaser.Scene {
   }
 
   create() {
+    this.scene.launch('BatteryBar');
     // var configMusic = {
     //   loop: true,
     //   volume: 2,

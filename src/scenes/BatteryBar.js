@@ -13,14 +13,15 @@ battery_bar = Phaser.Geom.Rectangle;
     create() {
         //VARIABLES
         this.ss_lanternOn = false;        //Variable que nos dice si la batería está encendida
-        var MAX_power = 200;     //Energía máxima de la batería
+        this.MAX_power = 300;     //Energía máxima de la batería
         this.energy = 10;      //Energía actual
+        this.consumeVel = 2;  //Velocidad de descarga
 
         //GRAFICO DE BATERIA  
         this.graphics = this.add.graphics({
             fillStyle: {color: 0xE1D779}
         });
-        this.battery_bar = new Phaser.Geom.Rectangle(20,20, this.energy, 50);
+        this.battery_bar = new Phaser.Geom.Rectangle(900,680, this.MAX_power, 20);
 
         //Control por teclado
         const keyCodes = Phaser.Input.Keyboard.KeyCodes;
@@ -47,13 +48,18 @@ battery_bar = Phaser.Geom.Rectangle;
   }
 
   lanternOn(){
-    if(this.ss_lanternOn){
-        this.energy++;
+    if(this.ss_lanternOn && this.energy>0){
+        this.energy = this.energy - 1*this.consumeVel;
         this.battery_bar.width = this.energy;
         console.log("asdasda"+this.energy);
+    }else if (!(this.ss_lanternOn) && this.energy<this.MAX_power){
+     
+      this.energy++;
+      this.battery_bar.width = this.energy;
     }
   }
 
 }
+
   
   export default BatteryBar;
