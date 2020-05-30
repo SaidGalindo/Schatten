@@ -11,6 +11,13 @@ class Bootloader extends Phaser.Scene{
         console.log('Escena Bootloader');
     }
     preload() {
+        this.registry.events.on('evento', (dato) => {
+            console.log('Se ha emitido el evento', dato);
+            });
+        //Manejo de datos
+        this.data.set('vidas', 3);
+        //Cambio de escena
+
         
         this.load.path = './assets/';  
 
@@ -45,6 +52,8 @@ class Bootloader extends Phaser.Scene{
     }
     create() {
         
+        console.log(this.data.list);
+
         //this.scene.launch('BatteryBar');
         //Se coloca el fondo
         this.fondoC = this.add.image(0,0,'fondoSchattenC');
@@ -97,7 +106,7 @@ class Bootloader extends Phaser.Scene{
                 //this.truenoC=this.sound.add  ("truenoC");//esto genera un error (probablememtte el peso del audio )
                 //this.truenoC.play();
                 this.ashesC.stop();
-                this.scene.start("TestScene");
+                this.scene.start("TestScene", this.data.get("vidas"));
             }else if(gameObject.name == "cNiveles"){
                 this.ashesC.stop();
                 this.scene.start("menuNiveles");

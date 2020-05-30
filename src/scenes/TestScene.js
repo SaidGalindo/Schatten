@@ -3,11 +3,13 @@ class TestScene extends Phaser.Scene {
     super("TestScene");
   }
 
-  init() {
+  init(vidas) {
     console.log("Escena Test");
+    this.data.set("vidas", vidas);
   }
 
   preload() {
+    
     this.load.path = "./assets/";
     this.load.audio("truenoC", "audio/truenoC.mp3");
     this.load.audio("radio", "audio/radionoise.mp3");
@@ -39,6 +41,12 @@ class TestScene extends Phaser.Scene {
   }
 
   create() {
+    //Manejo de datos
+    //this.data.set('vidas', vidas);
+    console.log("vidas: ", this.data.list);
+
+    //this.registry.events.emit('evento', 300);
+    
     this.scene.launch("BatteryBar");
     this.scene.launch("StaminaBar");
 
