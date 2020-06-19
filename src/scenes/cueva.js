@@ -19,7 +19,7 @@ class cueva extends Phaser.Scene {
     this.load.image("rocaVer", "cueva/cueva_RocaVertical.png");
 
     //se carga el audio
-    this.load.audio("cBonfire", "audio/cBonfire.mp3");
+    this.load.audio("cAshes", "audio/ashesC.mp3");
     this.load.audio("cPerroHit", "audio/cPerroHit.mp3");
   }
 
@@ -65,9 +65,10 @@ class cueva extends Phaser.Scene {
     this.piso.setOrigin(0, 0);
     this.piso.setScrollFactor(0);
 
+
     //-- Jugador
-    this.player = this.physics.add.image(200, 600, "santino"); //Se agregaron fisicas al jugador
-    this.player.setDepth(2);
+    this.player = this.physics.add.image(100, 400, "santino"); //Se agregaron fisicas al jugador
+    this.player.setDepth(2).setGravityY(200);
 
     //choque de bordes
     this.player.body.setCollideWorldBounds(true);
@@ -80,51 +81,101 @@ class cueva extends Phaser.Scene {
       this.sys.canvas.height
     );
     this.cameras.main.startFollow(this.player);
-
-    //movimiento
-    this.cursor = this.input.keyboard.createCursorKeys();
-    this.cursor.right.on("down", () => {
-      this.player.body.setVelocityX(400);
-      this.player.flipX = false;
-    });
-    this.cursor.left.on("down", () => {
-      this.player.body.setVelocityX(-400);
-      this.player.flipX = true;
-    });
   }
 
   movement() {
     //Joshua , tu funcion no me gusta .-.
     if (this.cursors.left.isDown && this.player.x > 100) {
-      this.player.x -= 3;
+      this.player.x -= 5;
       this.player.flipX = 1;
       console.log(this.player.x);
     } else if (
       this.cursors.right.isDown &&
       this.player.x < this.sys.canvas.width * 3
     ) {
-      this.player.x += 3;
+      this.player.x += 5;
       this.player.flipX = 0;
       //console.log(this.player.x);
     }
   }
+  Jump() {
+    if (this.cursors.up.isDown) {
+      //this.salto.play();
+      this.player.setVelocityY(-200);
+    }
+  }
+  verificaPos() {
+    if (this.player.x >= 1290) {
+      this.timeline.play();
+    }
+
+    //rocas para saltar
+
+    this.rocaHor = this.physics.add.image(50, 600, "rocaHor");
+    this.rocaHor.setOrigin(0, 0).setDepth(2);
+    //this.rocaHor.setScale(0.3);
+    this.rocaHor.setImmovable(true);
+    this.physics.add.collider(this.player, this.rocaHor);
+    this.physics.world.collide(this.player, this.rocaHor, () => {});
+
+
+    this.rocaVer = this.physics.add.image(500, 400, "rocaVer");
+    this.rocaVer.setOrigin(0, 0).setDepth(2);
+    //this.rocaVer.setScale(0.09);
+    this.rocaVer.setImmovable(true);
+    this.physics.add.collider(this.player, this.rocaVer);
+    this.physics.world.collide(this.player, this.rocaVer, () => {});
+
+
+    this.rocaVer1 = this.physics.add.image(630, 300, "rocaVer");
+    this.rocaVer1.setOrigin(0, 0).setDepth(2);
+    //this.rocaVer.setScale(0.09);
+    this.rocaVer1.setImmovable(true);
+    this.physics.add.collider(this.player, this.rocaVer1);
+    this.physics.world.collide(this.player, this.rocaVer1, () => {});
+
+
+    this.rocaVer2 = this.physics.add.image(760, 200, "rocaVer");
+    this.rocaVer2.setOrigin(0, 0).setDepth(2);
+    //this.rocaVer.setScale(0.09);
+    this.rocaVer2.setImmovable(true);
+    this.physics.add.collider(this.player, this.rocaVer2);
+    this.physics.world.collide(this.player, this.rocaVer2, () => {});
+
+
+    this.rocaVer3 = this.physics.add.image(1100, 400, "rocaVer");
+    this.rocaVer3.setOrigin(0, 0).setDepth(2);
+    //this.rocaVer.setScale(0.09);
+    this.rocaVer3.setImmovable(true);
+    this.physics.add.collider(this.player, this.rocaVer3);
+    this.physics.world.collide(this.player, this.rocaVer3, () => {});
+
+    //fisicas de santino
+    //this.player = this.physics.add.image(200, 600, "santino");
+    //this.player.setDepth(6).setGravityY(400);
+
+    //audio perro
+    this.cPerroHit=this.sound.add("cPerroHit");
+    this.cAshes = this.sound.add("cAshes",{volume: 0.4});
+    this.cAshes.play();
+  }
 
   update() {
-    //this.movement();
+    this.movement();
+    this.verificaPos();
+    this.Jump();
     this.pilar.tilePositionX = this.cameras.main.scrollX * 0.2;
     this.piso.tilePositionX = this.cameras.main.scrollX * 0.5;
 
-    //efecto
-    // console.log(this.player.x);
-    // if (this.player.x > 750 && this.player.x < 770) {
-    //   this.cPerroHit.play();
-    // }
-    // if (this.player.x > 750) {
-    //   this.player.setTint("0xff0000");
-    //   //this.cPerroHit.play();
-    // } else {
-    //   this.player.setTint();
-    // }
+    if(this.player.y > 595 && this.player.y < 600){
+      this.cPerroHit.play();
+    }
+    if(this.player.y > 580){
+      this.player.setTint("0xff0000");
+      //this.cPerroHit.play();
+    }else{
+      this.player.setTint();
+    }
   }
 }
 

@@ -80,7 +80,7 @@ class menuNiveles extends Phaser.Scene{
 
                 //aqui se inicia el rio
             }else if(gameObject.name == "cIncertidumbre"){ 
-                this.scene.start("Escena2");
+                this.scene.start("cueva");
             }         
     
         });

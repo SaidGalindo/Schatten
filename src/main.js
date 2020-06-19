@@ -20,8 +20,8 @@ var config = {
   pixelArt: true, //Diseño con pixeles definidos (no borrosos)
   backgroundColor: "#34495e", //Color de fondo del canvas ()
   scene: [
-    cueva,
     Bootloader,
+    cueva,
     menuNiveles,
     Escena2,
     TestScene,
