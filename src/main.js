@@ -5,6 +5,7 @@ import menuNiveles from "./scenes/menuNiveles.js";
 import creditos from "./scenes/creditos.js";
 import BatteryBar from "./scenes/BatteryBar.js";
 import StaminaBar from "./scenes/StaminaBar.js";
+import cueva from "./scenes/cueva.js";
 
 var config = {
   title: "Curso Phaser", //Nombre del juego (opcional)
@@ -19,6 +20,7 @@ var config = {
   pixelArt: true, //Diseño con pixeles definidos (no borrosos)
   backgroundColor: "#34495e", //Color de fondo del canvas ()
   scene: [
+    cueva,
     Bootloader,
     menuNiveles,
     Escena2,
