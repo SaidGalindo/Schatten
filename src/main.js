@@ -19,12 +19,12 @@ var config = {
   // se refiere a dónde se pondrá el canvas o lienzo
   pixelArt: true, //Diseño con pixeles definidos (no borrosos)
   backgroundColor: "#34495e", //Color de fondo del canvas ()
-  scene: [TestScene,
+  scene: [
     Bootloader,
     cueva,
     menuNiveles,
     Escena2,
-    //TestScene,
+    TestScene,
     creditos,
     BatteryBar,
     StaminaBar,
@@ -32,7 +32,7 @@ var config = {
   physics: {
     default: "arcade", //Matter
     arcade: {
-      debug: true,
+      //debug: true,
     },
   },
   banner: {
