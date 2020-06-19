@@ -18,11 +18,11 @@ var config = {
   // se refiere a dónde se pondrá el canvas o lienzo
   pixelArt: true, //Diseño con pixeles definidos (no borrosos)
   backgroundColor: "#34495e", //Color de fondo del canvas ()
-  scene: [
+  scene: [TestScene,
     Bootloader,
     menuNiveles,
     Escena2,
-    TestScene,
+    //TestScene,
     creditos,
     BatteryBar,
     StaminaBar,

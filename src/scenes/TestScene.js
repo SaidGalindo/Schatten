@@ -38,6 +38,11 @@ class TestScene extends Phaser.Scene {
       "santinoPack/santino_atlas.png",
       "santinoPack/santino_anim.json"
     );
+    //tronco
+    this.load.image("troncoG", "troncos/troncoGrande.png");
+    this.load.image("troncoC", "troncos/tronco.png");
+    
+    
   }
 
   create() {
@@ -202,6 +207,21 @@ class TestScene extends Phaser.Scene {
     this.monio3.setScale(0.008);
     this.monio3.setDepth(4);
 
+    //tronco
+    this.tronco01 = this.physics.add.image(600, 630, "troncoG").setScale(0.4);
+    this.tronco01.body.collideWorldBounds = true;
+    //this.tronco01.body.onCollide = new Phaser.Signal();
+    //this.tronco01.body.onCollide(this.transicionCueva(), this);
+
+    this.tronco02 = this.physics.add.image(1000, 630, "troncoC").setScale(0.2);
+    this.tronco03 = this.physics.add.image(2500, 630, "troncoG").setScale(0.4);
+    this.tronco04 = this.physics.add.image(3200, 630, "troncoG").setScale(0.4);
+    this.tronco05 = this.physics.add.image(3600, 630, "troncoC").setScale(0.2);
+    this.tronco09 = this.physics.add.image(4000, 630, "troncoG").setScale(0.4);
+    this.tronco10 = this.physics.add.image(4300, 630, "troncoC").setScale(0.2);
+    //Colision de de tronco
+
+
     this.tweenMoniosFlotando = this.add.tween({
       targets: [this.monio, this.monio2, this.monio3],
       y: 640,
@@ -312,6 +332,10 @@ class TestScene extends Phaser.Scene {
     this.createGround();
   }
 
+  transicionCueva(){
+    Console.log("Transición!");
+  }
+
   update() {
     this.movement();
     this.troncos5.tilePositionX = this.cameras.main.scrollX * 0.2;
@@ -360,6 +384,7 @@ class TestScene extends Phaser.Scene {
     if (this.cursors.up.isDown) {
       //this.salto.play();
       this.player.setVelocityY(-200);
+      
     }
   }
 
